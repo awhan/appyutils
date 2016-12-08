@@ -3,6 +3,22 @@ import lxml.html
 import json
 import yaml
 import sys
+from colorama import Fore, Style
+import re
+from itertools import cycle
+
+
+def hl(substrings, text):
+    '''highlight substrings in text'''
+    colors = [Fore.RED, Fore.GREEN, Fore.BLUE, Fore.MAGENTA]
+    if not isinstance(substrings, list):
+        substrings = [substrings]
+    for ss, clr in zip(substrings, cycle(colors)):
+        text = re.sub(
+            r'({})'.format(ss),
+            Style.BRIGHT + clr + r'\1' + Style.RESET_ALL,
+            text, flags=re.I)
+    print(text)
 
 
 def showhtml(e):
