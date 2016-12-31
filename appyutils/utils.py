@@ -18,7 +18,7 @@ def hl(substrings, text):
             r'({})'.format(ss),
             Style.BRIGHT + clr + r'\1' + Style.RESET_ALL,
             text, flags=re.I)
-    print(text)
+    return text
 
 
 def showhtml(e):
