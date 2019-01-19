@@ -6,7 +6,8 @@ import sys
 from colorama import Fore, Style
 import re
 from itertools import cycle
-
+import pandas as pd
+import numpy as np
 
 def hl(substrings, text):
     '''highlight substrings in text'''
@@ -26,10 +27,14 @@ def showhtml(e):
     print(bs(lxml.html.tostring(e), 'lxml').prettify())
 
 
-def dumpj(adict):
-    print(json.dumps(adict, indent=1))
+def dumpj(d: dict):
+    print(json.dumps(d, indent=1))
 
 
-def dumpy(adict):
-    d = json.loads(json.dumps(adict))
+def dumpy(d: dict):
     yaml.dump(d, sys.stdout, default_flow_style=False, allow_unicode=True)
+
+
+def random_df():
+    return pd.DataFrame(np.random.randint(1, 10, (10, 4)),
+                        columns=list('abcd'))
